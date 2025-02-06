@@ -13,13 +13,13 @@ import random
 import arcade
 
 # --- Constants ---
-SPRITE_SCALING_PLAYER = 0.5
-SPRITE_SCALING_COIN = .25
-COIN_COUNT = 50
+SPRITE_SCALING_PLAYER = 0.6
+SPRITE_SCALING_COIN = .15
+COIN_COUNT = 120
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Sprite Collect Coins Example"
+SCREEN_WIDTH = 1440
+SCREEN_HEIGHT = 720
+SCREEN_TITLE = "Sprite with cursor follow collects scattered coins"
 
 
 class MyGame(arcade.Window):
@@ -41,7 +41,7 @@ class MyGame(arcade.Window):
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
 
-        arcade.set_background_color(arcade.color.AMAZON)
+        arcade.set_background_color(arcade.color.BITTER_LIME)
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -55,7 +55,7 @@ class MyGame(arcade.Window):
 
         # Set up the player
         # Character image from kenney.nl
-        img = ":resources:images/animated_characters/female_person/femalePerson_idle.png"
+        img = "C:/UAH/Cuatrimestre 2/TDV/sprites/player sprites/Pirate/4x/idle_2.png"
         self.player_sprite = arcade.Sprite(img, SPRITE_SCALING_PLAYER)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 50
@@ -66,7 +66,7 @@ class MyGame(arcade.Window):
 
             # Create the coin instance
             # Coin image from kenney.nl
-            coin = arcade.Sprite(":resources:images/items/coinGold.png",
+            coin = arcade.Sprite("C:/UAH/Cuatrimestre 2/TDV/sprites/resources/Test-sprites-1/PNG/shadow/20.png",
                                  SPRITE_SCALING_COIN)
 
             # Position the coin
@@ -104,8 +104,9 @@ class MyGame(arcade.Window):
         # Loop through each colliding sprite, remove it, and add to the score.
         for coin in coins_hit_list:
             coin.remove_from_sprite_lists()
-            self.score += 1
-
+            self.score += 2
+        if self.score == 240:
+            arcade.exit()
 
 def main():
     """ Main function """
